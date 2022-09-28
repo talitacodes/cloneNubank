@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,217 +13,251 @@ class _LoginPageState extends State<LoginPage> {
   final paddingContent = const EdgeInsets.symmetric(horizontal: 20);
   final paddingTop = const EdgeInsets.only(top: 20);
   @override
+  void initState() {
+    // TODO: implement initState
+    FlutterStatusbarcolor.setStatusBarColor(
+      const Color.fromRGBO(130, 10, 209, 1),
+    );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              color: const Color.fromRGBO(130, 10, 209, 1),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 20, right: 20, bottom: 20, top: 40),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SafeArea(
+        child: NotificationListener(
+          onNotification: (OverscrollIndicatorNotification overscroll) {
+            overscroll.disallowIndicator();
+            return true;
+          },
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  color: const Color.fromRGBO(130, 10, 209, 1),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 20, right: 20, bottom: 20, top: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const CircleAvatar(
-                          backgroundColor: Color.fromRGBO(155, 3, 253, 100),
-                          radius: 28,
-                          child: Icon(
-                            Icons.person_outline_rounded,
-                            size: 30,
-                            color: Colors.white,
-                          ),
-                        ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            IconButton(
-                              onPressed: (() {}),
-                              icon: const Icon(Icons.remove_red_eye_outlined,
-                                  color: Colors.white),
-                            ),
-                            IconButton(
-                              onPressed: (() {}),
-                              icon: const Icon(Icons.question_mark_rounded,
-                                  color: Colors.white),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.person_add_alt,
+                            const CircleAvatar(
+                              backgroundColor: Color.fromRGBO(155, 3, 253, 100),
+                              radius: 28,
+                              child: Icon(
+                                Icons.person_outline_rounded,
+                                size: 30,
                                 color: Colors.white,
-                                size: 32,
                               ),
+                            ),
+                            Row(
+                              children: [
+                                IconButton(
+                                  onPressed: (() {}),
+                                  icon: const Icon(MdiIcons.eyeOutline,
+                                      color: Colors.white),
+                                ),
+                                IconButton(
+                                  onPressed: (() {}),
+                                  icon: const Icon(MdiIcons.helpCircleOutline,
+                                      color: Colors.white),
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.person_add_alt,
+                                    color: Colors.white,
+                                    size: 32,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
+                        Padding(
+                          padding: paddingTop,
+                          child: const Text(
+                            "Olá, Talita",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                        ),
                       ],
                     ),
-                    Padding(
-                      padding: paddingTop,
-                      child: const Text(
-                        "Olá, Talita",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: paddingContent,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: paddingTop,
-                    child: InkWell(
-                      splashColor: Colors.white,
-                      onTap: (() {}),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
+                Padding(
+                  padding: paddingContent,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: paddingTop,
+                        child: InkWell(
+                          splashColor: Colors.white,
+                          focusColor: Colors.white,
+                          hoverColor: Colors.white,
+                          highlightColor: Colors.white,
+                          autofocus: false,
+                          onTap: (() {}),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: const [
+                                  Text(
+                                    "Conta",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                  Icon(Icons.arrow_forward_ios_rounded,
+                                      size: 16, color: Colors.black54),
+                                ],
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(top: 8.0),
+                                child: Text(
+                                  "R\$0,00",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      _listButtom(),
+                      Padding(
+                        padding: paddingTop,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              color: Color.fromRGBO(240, 241, 245, 100),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              children: const [
+                                Icon(
+                                  MdiIcons.creditCardChipOutline,
+                                  size: 22,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 16),
+                                  child: Text(
+                                    "Meus cartões",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      _listContainers(),
+                    ],
+                  ),
+                ),
+                const Divider(),
+                Padding(
+                  padding: paddingContent,
+                  child: InkWell(
+                    onTap: () {},
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: paddingTop,
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: const [
                               Text(
-                                "Conta",
+                                "Cartão de crédito",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
+                                    fontWeight: FontWeight.bold, fontSize: 18),
                               ),
                               Icon(Icons.arrow_forward_ios_rounded,
-                                  size: 16, color: Colors.black54),
-                            ],
-                          ),
-                          const Text(
-                            "R\$0,00",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  _listButtom(),
-                  Padding(
-                    padding: paddingTop,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            color: Color.fromRGBO(240, 241, 245, 100),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(
-                            children: const [
-                              Icon(
-                                Icons.credit_card_rounded,
-                                size: 22,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 16),
-                                child: Text(
-                                  "Meus cartões",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                              )
+                                  size: 16, color: Colors.black45),
                             ],
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                  _listContainers(),
-                ],
-              ),
-            ),
-            const Divider(),
-            Padding(
-              padding: paddingContent,
-              child: InkWell(
-                onTap: () {},
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: paddingTop,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            "Cartão de crédito",
+                        Padding(
+                          padding: paddingTop,
+                          child: const Text(
+                            'Fatura atual',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.black38,
+                            ),
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8),
+                          child: Text(
+                            'R\$0.000,00',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           ),
-                          Icon(Icons.arrow_forward_ios_rounded,
-                              size: 16, color: Colors.black45),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: paddingTop,
-                      child: const Text(
-                        'Fatura atual',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.black38,
                         ),
-                      ),
+                        const Text(
+                          'Limite disponível de R\$0.000,00',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.black38,
+                          ),
+                        ),
+                      ],
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
-                      child: Text(
-                        'R\$0.000,00',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
-                      ),
-                    ),
-                    const Text(
-                      'Limite disponível de R\$0.000,00',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Colors.black38,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                const Divider(),
+              ],
             ),
-            const Divider(),
-          ],
+          ),
         ),
       ),
-      bottomNavigationBar: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Divider(),
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.compare_arrows_outlined,
-                  color: Color.fromRGBO(155, 157, 161, 100))),
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.attach_money,
-                color: Color.fromRGBO(155, 157, 161, 100),
-              )),
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.shopping_bag_outlined,
-                  color: Color.fromRGBO(155, 157, 161, 100))),
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.compare_arrows_outlined,
+              color: Color.fromRGBO(130, 10, 209, 1),
+              size: 28,
+            ),
+            label: "",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.attach_money,
+              color: Colors.black45,
+              size: 28,
+            ),
+            label: "",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.shopping_bag_outlined,
+              color: Colors.black45,
+              size: 28,
+            ),
+            label: "",
+          ),
         ],
       ),
     );
@@ -294,8 +330,6 @@ class _LoginPageState extends State<LoginPage> {
             itemCount: 3,
             itemBuilder: (context, index) {
               return Container(
-                //ListView
-
                 decoration: const BoxDecoration(
                     color: Color.fromRGBO(240, 241, 245, 100),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -334,7 +368,7 @@ class _LoginPageState extends State<LoginPage> {
                               //color: Colors.grey,
                               shape: BoxShape.circle),
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: _iconButton(index),
                           ),
                         ),
@@ -356,7 +390,7 @@ class _LoginPageState extends State<LoginPage> {
         index == 0
             ? Icons.api_rounded
             : index == 1
-                ? Icons.payments_rounded
+                ? MdiIcons.barcode
                 : index == 2
                     ? Icons.handshake_rounded
                     : index == 3
@@ -374,7 +408,7 @@ class _LoginPageState extends State<LoginPage> {
                                             : index == 9
                                                 ? Icons.add_chart_rounded
                                                 : Icons.error,
-        size: 32,
+        //size: 30,
       ),
     );
   }
